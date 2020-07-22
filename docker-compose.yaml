@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: 'test_db'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'mysql'
+      MYSQL_PASSWORD: 'root'
+      DATABASE_HOST: 'db'
+    networks:
+      - default
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    container_name: test_app
+    ports:
+      - "8000:8000"
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
