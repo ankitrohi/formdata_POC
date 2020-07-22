@@ -32,8 +32,9 @@ func main() {
 }
 
 func initDB() {
+	time.Sleep(30  * time.Second)
 	var err error
-	conn, err = sql.Open("mysql", "root:root@tcp(mysql:3306)/test_db")
+	conn, err = sql.Open("mysql", "mysql:root@tcp(mysql:3306)/test_db")
 	if err != nil {
 		fmt.Printf("error in initialising database: %v", err)
 		os.Exit(1)
